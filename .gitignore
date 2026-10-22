@@ -10,3 +10,6 @@ Thumbs.db
 # Logs / tooling
 *.log
 node_modules/
+
+# Build output
+dist/
