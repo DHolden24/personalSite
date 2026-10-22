@@ -46,7 +46,7 @@ public/                 Files copied to the site as-is (favicon, images)
 
 Routes use real paths (`/projects/liechtenoter/privacy`), not `#` URLs. A static host only serves files that exist, so the build copies `index.html` into a folder for every project route, plus a `404.html` for anything else. Every real page therefore returns HTTP 200, which matters for links like the Google Play privacy policy URL.
 
-The site deploys to GitHub Pages through `.github/workflows/deploy.yml` on every push to `main`. In the repo settings, under **Pages**, set **Source** to **GitHub Actions**. The workflow works out the base path itself (`/personalSite/` on github.io, or `/` with a custom domain).
+The site isn't published yet. `.github/workflows/deploy.yml` deploys to GitHub Pages, but only when run by hand from the Actions tab. To go live, enable Pages in the repo settings (**Source**: **GitHub Actions**) and add a `push` trigger on `main` back to the workflow. The workflow works out the base path itself (`/personalSite/` on github.io, or `/` with a custom domain).
 
 ## Tests
 
