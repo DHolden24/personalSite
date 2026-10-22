@@ -38,6 +38,7 @@ src/
   views/                One component per page
   components/           Shared components
   projects/             One folder per project
+tests/                  Vitest tests
 public/                 Files copied to the site as-is (favicon, images)
 ```
 
@@ -46,3 +47,16 @@ public/                 Files copied to the site as-is (favicon, images)
 Routes use real paths (`/projects/liechtenoter/privacy`), not `#` URLs. A static host only serves files that exist, so the build copies `index.html` into a folder for every project route, plus a `404.html` for anything else. Every real page therefore returns HTTP 200, which matters for links like the Google Play privacy policy URL.
 
 The site deploys to GitHub Pages through `.github/workflows/deploy.yml` on every push to `main`. In the repo settings, under **Pages**, set **Source** to **GitHub Actions**. The workflow works out the base path itself (`/personalSite/` on github.io, or `/` with a custom domain).
+
+## Tests
+
+```sh
+npm test          # run once (Vitest + Vue Test Utils, files in tests/)
+npm run test:watch
+```
+
+`tests/mountAt.js` mounts the whole app at a URL, which is the easiest way to test a page. CI (`.github/workflows/ci.yml`) runs the tests and the build on every PR and push to `main`.
+
+## Claude Code skills
+
+`.claude/skills/` holds the feature workflow (`/refine` → `/plan` → `/build` → `/review` → `/address` or `/triage` → `/learn`), `/persona-assessment`, and the `/ponytail` family. They're adapted from the hemaNote repo, and `CLAUDE.md` has the repo rules they rely on.
