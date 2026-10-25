@@ -1,6 +1,5 @@
 <template>
   <n-h1 class="heading">Projects</n-h1>
-  <n-text depth="3">{{ owner.tagline }}</n-text>
   <div class="list">
     <link-card v-for="p in projects" :key="p.id" :to="{ name: 'project', params: { id: p.id } }">
       <div class="project">
@@ -22,7 +21,6 @@
 import { NH1, NSpace, NTag, NText } from 'naive-ui';
 import LinkCard from '../components/LinkCard.vue';
 import StatusTag from '../components/StatusTag.vue';
-import { owner } from '../site.js';
 import { projects } from '../projects.js';
 import { usePageTitle } from '../pageTitle.js';
 

@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { computed, provide, ref, watch } from 'vue';
 import { NButton, NConfigProvider, NGlobalStyle, NSpace, NSwitch, darkTheme, useOsTheme } from 'naive-ui';
 import { owner } from './site.js';
 
@@ -37,6 +37,7 @@ function readStoredTheme() {
 const osTheme = useOsTheme();
 const dark = ref((readStoredTheme() ?? osTheme.value) === 'dark');
 const theme = computed(() => (dark.value ? darkTheme : null));
+provide('dark', dark);
 
 watch(dark, (value) => {
   try {
