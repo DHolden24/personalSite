@@ -102,6 +102,10 @@ Structure the comment as:
      Check: component behavior matches spec, accessible names on interactive elements and alt text on images,
      no hardcoded colors that break dark/light theme (prefer Naive UI theme values), layout at phone widths,
      page titles set via usePageTitle, .vue blocks ordered template → script → style.
+     Design floor: run `node .claude/skills/hallmark/scripts/sloplint.mjs <changed .vue/.css files> --genre editorial`,
+     dismiss the gates in .claude/skills/hallmark/references/gates.md § Not applicable, and walk the Floor in
+     .claude/skills/hallmark/SKILL.md for the judged gates (eyebrows, tracked caps, dotted meta strings, emoji icons,
+     invented facts, generated-voice copy, both themes). Any Floor finding is blocking; Reflex findings are advisory.
      If no UI surface: "N/A — no UI changes." -->
 
 #### Security

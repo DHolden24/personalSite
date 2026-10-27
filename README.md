@@ -60,3 +60,5 @@ npm run test:watch
 ## Claude Code skills
 
 `.claude/skills/` holds the feature workflow (`/refine` → `/plan` → `/build` → `/review` → `/address` or `/triage` → `/learn`), `/persona-assessment`, and the `/ponytail` family. They're adapted from the hemaNote repo, and `CLAUDE.md` has the repo rules they rely on.
+
+`/hallmark` is a design floor adapted from [Hallmark](https://github.com/Nutlope/hallmark) (MIT): the rules a page must meet so it doesn't look generated, plus upstream's `sloplint` checker. `/build` and `/review` apply it to UI changes; `/hallmark audit <target>`, `polish` and `redesign` run it directly. Its browser checks need `puppeteer-core` and Chrome installed globally; without them only the static checks run.

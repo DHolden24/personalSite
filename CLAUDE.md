@@ -14,4 +14,4 @@
 
 ## Workflow skills
 
-Features move through `/refine` → `/plan` → `/build` → `/review` → `/address` or `/triage` → `/learn` (skills in `.claude/skills/`). Specs live at `feature/<slug>/spec.md`, architecture decisions in `adr/`, and project-wide lessons in `LESSONS.md`. Issues are tracked in GitHub Issues at https://github.com/DHolden24/personalSite/issues.
+Features move through `/refine` → `/plan` → `/build` → `/review` → `/address` or `/triage` → `/learn` (skills in `.claude/skills/`). Specs live at `feature/<slug>/spec.md`, architecture decisions in `adr/`, and project-wide lessons in `LESSONS.md`. UI changes meet the design floor in `.claude/skills/hallmark/SKILL.md`. Issues are tracked in GitHub Issues at https://github.com/DHolden24/personalSite/issues.

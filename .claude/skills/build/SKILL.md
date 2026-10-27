@@ -58,6 +58,7 @@ Project specifics:
 - Tests live in `tests/` (Vitest + Vue Test Utils). Run just the affected files while iterating: `npx vitest run tests/<file>.test.js`
 - For pages and routing, mount the whole app at a URL with `tests/mountAt.js`
 - New project routes must also be emitted by the `staticRoutes` plugin in `vite.config.js`, or the clean URL 404s on GitHub Pages
+- Changes to `src/` views, components or styles follow the Floor in `.claude/skills/hallmark/SKILL.md` (read it and `references/craft.md` before writing UI). Run `node .claude/skills/hallmark/scripts/sloplint.mjs <changed files> --genre editorial` and fix every `FAIL`, dismissing the gates its § Not applicable lists
 - Run `npm test && npm run build` before each commit — both must pass
 
 ### 4. Open a PR
