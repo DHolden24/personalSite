@@ -15,21 +15,23 @@
     <n-space>
       <n-button v-for="l in project.links" :key="l.label" tag="a" :href="l.url" secondary>{{ l.label }} ↗</n-button>
     </n-space>
-    <section v-for="(f, i) in project.features" :key="f.title" class="feature" :class="{ flip: i % 2 }">
-      <div class="feature-text">
-        <n-h2>{{ f.title }}</n-h2>
-        <n-p>{{ f.text }}</n-p>
-        <ul v-if="f.points">
-          <li v-for="p in f.points" :key="p">{{ p }}</li>
-        </ul>
-      </div>
-      <template v-if="f.screenshot">
-        <img v-if="screenshotSrc(f.screenshot)" class="screenshot" :src="screenshotSrc(f.screenshot)" :alt="f.screenshot.alt" />
-        <div v-else class="screenshot placeholder" data-test="screenshot-placeholder">
-          <n-text depth="3">Screenshot to come: {{ f.screenshot.alt }}</n-text>
+    <div class="features">
+      <section v-for="(f, i) in project.features" :key="f.title" class="feature" :class="{ flip: i % 2 }">
+        <div class="feature-text">
+          <n-h2>{{ f.title }}</n-h2>
+          <n-p>{{ f.text }}</n-p>
+          <ul v-if="f.points">
+            <li v-for="p in f.points" :key="p">{{ p }}</li>
+          </ul>
         </div>
-      </template>
-    </section>
+        <template v-if="f.screenshot">
+          <img v-if="screenshotSrc(f.screenshot)" class="screenshot" loading="lazy" :src="screenshotSrc(f.screenshot)" :alt="f.screenshot.alt" />
+          <div v-else class="screenshot placeholder" data-test="screenshot-placeholder">
+            <n-text depth="3">Screenshot to come: {{ f.screenshot.alt }}</n-text>
+          </div>
+        </template>
+      </section>
+    </div>
     <template v-if="project.privacyPolicy">
       <n-divider title-placement="left">Documents</n-divider>
       <link-card :to="{ name: 'privacy', params: { id: project.id } }">
@@ -95,7 +97,7 @@ usePageTitle(() => project.value?.name);
 
 .screenshot {
   flex: none;
-  width: 220px;
+  width: 280px;
   aspect-ratio: 9 / 19.5;
   border-radius: 16px;
   object-fit: cover;
@@ -121,7 +123,40 @@ usePageTitle(() => project.value?.name);
 
   .screenshot {
     align-self: center;
-    width: min(220px, 70%);
+    width: min(280px, 75%);
+  }
+}
+
+/* Wide screens: break out of the page column into a 2-column grid, with each
+   feature's text above its screenshot and the screenshots aligned per row. */
+@media (min-width: 72rem) {
+  .features {
+    --width: min(76rem, 100vw - 4rem);
+    width: var(--width);
+    margin-inline: calc((100% - var(--width)) / 2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 4rem;
+  }
+
+  .feature,
+  .feature.flip {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 2rem 0;
+  }
+
+  /* An odd one out at the end sits centred under the two columns. */
+  .feature:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 4rem) / 2);
+  }
+
+  .screenshot {
+    align-self: center;
+    margin-top: auto;
+    width: 320px;
   }
 }
 </style>

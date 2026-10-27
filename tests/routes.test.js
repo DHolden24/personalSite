@@ -28,7 +28,7 @@ describe('routes', () => {
     const pending = features.filter((f) => f.screenshot && !f.screenshot.light && !f.screenshot.dark);
     const placeholders = wrapper.findAll('[data-test="screenshot-placeholder"]');
     expect(placeholders).toHaveLength(pending.length);
-    expect(placeholders[0].text()).toContain(pending[0].screenshot.alt);
+    placeholders.forEach((p, i) => expect(p.text()).toContain(pending[i].screenshot.alt));
   });
 
   it('shows the screenshot matching the theme, falling back to the other one', async () => {
@@ -39,7 +39,7 @@ describe('routes', () => {
     try {
       localStorage.setItem('theme', 'light');
       ({ wrapper } = await mountAt('/projects/liechtenoter'));
-      const srcs = () => wrapper.findAll('section img').map((img) => img.attributes('src'));
+      const srcs = () => wrapper.findAll('section img').slice(0, 2).map((img) => img.attributes('src'));
       expect(srcs()).toEqual(['light.png', 'only-light.png']);
 
       await wrapper.find('[role="switch"]').trigger('click');

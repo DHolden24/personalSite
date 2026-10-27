@@ -1,7 +1,24 @@
 // A screenshot shows as a placeholder until it has an image. To add one, put the
-// light and dark mode images in this folder, import them, and set them as light
+// light and dark mode images in screenshots/, import them, and set them as light
 // and dark (the import handles the base path). If only one is set, it's used in
 // both themes.
+import calendarLight from './screenshots/calendar-light.png';
+import calendarDark from './screenshots/calendar-dark.png';
+import tournamentLight from './screenshots/tournament-light.png';
+import tournamentDark from './screenshots/tournament-dark.png';
+import techniqueLight from './screenshots/technique-light.png';
+import techniqueDark from './screenshots/technique-dark.png';
+import playLight from './screenshots/play-light.png';
+import playDark from './screenshots/play-dark.png';
+import personLight from './screenshots/person-light.png';
+import personDark from './screenshots/person-dark.png';
+import tagsLight from './screenshots/tags-light.png';
+import tagsDark from './screenshots/tags-dark.png';
+import statsLight from './screenshots/stats-light.png';
+import statsDark from './screenshots/stats-dark.png';
+import shareLight from './screenshots/share-light.png';
+import shareDark from './screenshots/share-dark.png';
+
 export default {
   name: 'Liechtenoter',
   icon: '⚔️',
@@ -24,32 +41,32 @@ export default {
         'Source study: which treatise, which folio or verse, and your notes',
         'Other, for things like seminars or conditioning',
       ],
-      screenshot: { light: null, dark: null, alt: 'Calendar month view with event icons and a monthly focus' },
+      screenshot: { light: calendarLight, dark: calendarDark, alt: 'Calendar month view with event icons and a monthly focus' },
     },
     {
       title: 'Matches',
       text: 'A sparring session or tournament can have as many matches as you like. Each match has an opponent (pick someone already in the app or type a new name), a weapon, and the score. For tournaments you can also add where it was, who ran it, how many people entered and where you placed.',
-      screenshot: { light: null, dark: null, alt: 'A tournament event with its list of matches' },
+      screenshot: { light: tournamentLight, dark: tournamentDark, alt: 'A tournament with its placement and list of matches' },
     },
     {
       title: 'Techniques',
       text: 'This is the Fechtbuch part. Each technique has a description, any other names it goes by (Zornhau / Wrath Strike), the weapons it’s used with, and references to folios, books or videos. You can sort techniques into groups, and groups can sit inside other groups, for example Liechtenauer → Five Master Cuts → Zornhau.',
-      screenshot: { light: null, dark: null, alt: 'A technique page with alternate names, references and groups' },
+      screenshot: { light: techniqueLight, dark: techniqueDark, alt: 'A technique page with alternate names, references and groups' },
     },
     {
       title: 'Plays',
       text: 'A play is a two-person sequence. You write it out step by step, mark each step as the initiator’s or the responder’s, and link each one to its technique.',
-      screenshot: { light: null, dark: null, alt: 'A play with initiator and responder steps' },
+      screenshot: { light: playLight, dark: playDark, alt: 'A play with initiator and responder steps' },
     },
     {
       title: 'People',
       text: 'Sparring partners, opponents and instructors each get a page with their club, weapons, notes and an optional link (a HEMA Ratings profile, say). The page also shows your record against them, every match you’ve had with them and any classes they’ve taught you. If you’ve added the same person twice, you can merge them.',
-      screenshot: { light: null, dark: null, alt: 'A person’s page with a head-to-head record and match history' },
+      screenshot: { light: personLight, dark: personDark, alt: 'A person’s page with a head-to-head record and match history' },
     },
     {
       title: 'Tags',
       text: 'In any notes field you can type # followed by a technique name, and the app will suggest matches. A saved tag becomes a link, so #Zornhau in a lesson plan opens the Zornhau page. If the technique doesn’t exist yet, you can pick a close match or create it then and there.',
-      screenshot: { light: null, dark: null, alt: 'Typing a #tag in a lesson plan, with technique suggestions' },
+      screenshot: { light: tagsLight, dark: tagsDark, alt: 'Typing a #tag in an event description, with technique suggestions' },
     },
     {
       title: 'Stats',
@@ -60,12 +77,12 @@ export default {
         'Tournament placements over time, adjusted for the size of each event',
         'Your record with each weapon and against each opponent',
       ],
-      screenshot: { light: null, dark: null, alt: 'The Stats page with the overall record and a trend chart' },
+      screenshot: { light: statsLight, dark: statsDark, alt: 'The Stats page with the overall record and a trend chart' },
     },
     {
       title: 'Sharing',
       text: 'You can send techniques, groups, plays and events to someone else as a QR code, or as a file if there’s too much for a QR code. An instructor could, for example, put together a curriculum and share it with their class. Shared events leave out your match results and placements. If something you import conflicts with what you already have, you choose whether to keep yours, take theirs, keep both or merge them.',
-      screenshot: { light: null, dark: null, alt: 'A QR code for sharing a bundle of techniques and plays' },
+      screenshot: { light: shareLight, dark: shareDark, alt: 'A QR code for sharing the Zornhau technique' },
     },
     {
       title: 'Privacy',
