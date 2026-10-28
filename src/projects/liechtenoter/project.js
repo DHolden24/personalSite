@@ -19,11 +19,24 @@ import statsDark from './screenshots/stats-dark.png';
 import shareLight from './screenshots/share-light.png';
 import shareDark from './screenshots/share-dark.png';
 import icon from './icon.svg';
+import '@fontsource-variable/eb-garamond/wght.css';
+import '@fontsource-variable/eb-garamond/wght-italic.css';
 
 export default {
   name: 'Liechtenoter',
   icon, // the app icon, copied from hemaNote's liechtenoter/assets/icon/icon.svg
   color: '#9C2B1F',
+  // The app's Manuscript theme (lib/theme/manuscript_theme.dart in hemaNote).
+  // Dark mode's accent is the app's lighter red (soloTrainingAccentDark), because
+  // its main dark red (#C0453A) is only 3.6:1 on the ink page. `rule` outlines
+  // the screenshots, which are the same parchment as the page; each mode borrows
+  // the other mode's soft text colour for it.
+  theme: {
+    font: "'EB Garamond Variable', Georgia, serif",
+    fontSize: '18px',
+    light: { page: '#E9DDC0', surface: '#DDD0AC', rule: '#B8A67E', text: '#2B2118', textSoft: '#5D4C37', accent: '#9C2B1F' },
+    dark: { page: '#1C1510', surface: '#2C2116', rule: '#5D4C37', text: '#E9DDC0', textSoft: '#B8A67E', accent: '#D66652' },
+  },
   tagline: 'A Fechtbuch for the modern HEMAist.',
   description:
     'Liechtenoter is a training log for HEMA. You record your classes, sparring and tournaments on a calendar, write up the techniques you’re learning, and see your match results add up over time. The name comes from Johannes Liechtenauer, the 14th-century master behind much of the German longsword tradition. Your data is stored on your phone and nowhere else.',

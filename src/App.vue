@@ -1,7 +1,7 @@
 <template>
   <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
     <n-global-style />
-    <div class="page">
+    <div class="page" :style="projectTheme && { '--font-prose': projectTheme.font }">
       <header class="top">
         <router-link to="/" class="plain-link name">{{ owner.name }}</router-link>
         <n-space align="center">
@@ -30,8 +30,11 @@
 
 <script setup>
 import { computed, provide, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { NButton, NConfigProvider, NGlobalStyle, NSpace, NSwitch, darkTheme, useOsTheme } from 'naive-ui';
 import { owner } from './site.js';
+import { findProject } from './projects.js';
+import { projectThemeOverrides } from './projectTheme.js';
 
 const STORAGE_KEY = 'theme';
 
@@ -48,11 +51,19 @@ const dark = ref((readStoredTheme() ?? osTheme.value) === 'dark');
 const theme = computed(() => (dark.value ? darkTheme : null));
 // 16px body text. In light mode, Naive's default warning and success tag text is
 // too pale on its tint (about 2:1), so it's darkened to pass 4.5:1.
-const themeOverrides = computed(() => ({
+const siteOverrides = computed(() => ({
   common: { fontSize: '16px' },
   ...(dark.value ? {} : { Tag: { textColorWarning: '#8a5300', textColorSuccess: '#0b6b39' } }),
 }));
+
+// A project's pages (its page and privacy policy) wear its own theme, if it has one.
+const route = useRoute();
+const projectTheme = computed(() => (route.params.id ? findProject(route.params.id)?.theme : null));
+const themeOverrides = computed(() =>
+  projectTheme.value ? projectThemeOverrides(projectTheme.value, dark.value) : siteOverrides.value,
+);
 provide('dark', dark);
+provide('projectTheme', projectTheme);
 
 watch(dark, (value) => {
   try {

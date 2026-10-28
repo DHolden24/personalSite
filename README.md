@@ -23,6 +23,8 @@ src/projects/<id>/
 
 Copy `src/projects/liechtenoter/project.js` as a starting point. The project is picked up automatically, with no other files to edit.
 
+A project can set an optional `theme` so its page and privacy policy match the app: a `font` (import its CSS in `project.js`), a body `fontSize`, and `light` and `dark` palettes of `page`, `surface` (chips), `rule` (outlines, such as around screenshots), `text`, `textSoft` and `accent`. `tests/projectTheme.test.js` checks every text colour is at least 4.5:1 against its background. Without a `theme`, the project uses the site's look.
+
 ## Structure
 
 ```

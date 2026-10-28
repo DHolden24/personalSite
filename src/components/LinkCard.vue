@@ -41,7 +41,7 @@ const themeVars = useThemeVars();
 
 .arrow {
   font-size: 1.25rem;
-  opacity: 0.4;
+  opacity: 0.6;
   transition: transform 0.15s, opacity 0.15s;
 }
 

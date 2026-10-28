@@ -9,7 +9,7 @@
     <n-text depth="3" class="tagline">{{ project.tagline }}</n-text>
     <n-space class="tags">
       <status-tag :status="project.status" />
-      <n-tag v-for="t in project.tags" :key="t" round :bordered="false">{{ t }}</n-tag>
+      <n-tag v-for="t in project.tags" :key="t" :round="!project.theme" :bordered="false">{{ t }}</n-tag>
     </n-space>
     <n-p>{{ project.description }}</n-p>
     <n-space>
@@ -44,7 +44,7 @@
 
 <script setup>
 import { computed, inject } from 'vue';
-import { NBreadcrumb, NBreadcrumbItem, NButton, NDivider, NH1, NH2, NP, NSpace, NTag, NText } from 'naive-ui';
+import { NBreadcrumb, NBreadcrumbItem, NButton, NDivider, NH1, NH2, NP, NSpace, NTag, NText, useThemeVars } from 'naive-ui';
 import LinkCard from '../components/LinkCard.vue';
 import StatusTag from '../components/StatusTag.vue';
 import NotFoundView from './NotFoundView.vue';
@@ -54,6 +54,7 @@ import { usePageTitle } from '../pageTitle.js';
 const props = defineProps({ id: { type: String, required: true } });
 const project = computed(() => findProject(props.id));
 const dark = inject('dark');
+const themeVars = useThemeVars();
 
 // Prefer the screenshot matching the site theme, but show the other one rather than nothing.
 const screenshotSrc = (s) => (dark.value ? s.dark || s.light : s.light || s.dark);
@@ -102,8 +103,10 @@ usePageTitle(() => project.value?.name);
   flex: none;
   width: 280px;
   aspect-ratio: 9 / 19.5;
+  border: 1px solid v-bind('themeVars.borderColor');
   border-radius: 16px;
   object-fit: cover;
+  box-sizing: border-box;
 }
 
 .placeholder {

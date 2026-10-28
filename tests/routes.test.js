@@ -31,6 +31,25 @@ describe('routes', () => {
     expect(wrapper.text()).not.toMatch(/\p{Extended_Pictographic}/u);
   });
 
+  it("sets the page's prose font from the project's theme, and leaves other pages alone", async () => {
+    ({ wrapper } = await mountAt('/'));
+    expect(wrapper.find('.page').attributes('style') ?? '').not.toContain('--font-prose');
+    wrapper.unmount();
+    ({ wrapper } = await mountAt('/projects/liechtenoter/privacy'));
+    const { theme } = findProject('liechtenoter');
+    expect(wrapper.find('.page').element.style.getPropertyValue('--font-prose')).toBe(theme.font);
+  });
+
+  it("squares off tags on a themed project's page, and keeps them round elsewhere", async () => {
+    ({ wrapper } = await mountAt('/'));
+    expect(wrapper.findAll('.n-tag').every((t) => t.classes('n-tag--round'))).toBe(true);
+    wrapper.unmount();
+    ({ wrapper } = await mountAt('/projects/liechtenoter'));
+    const tags = wrapper.findAll('.n-tag');
+    expect(tags.length).toBeGreaterThan(0);
+    expect(tags.some((t) => t.classes('n-tag--round'))).toBe(false);
+  });
+
   it('shows a project page with a link to its privacy policy', async () => {
     ({ wrapper } = await mountAt('/projects/liechtenoter'));
     expect(wrapper.find('h1').text()).toBe('Liechtenoter');
