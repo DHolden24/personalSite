@@ -18,10 +18,11 @@ import statsLight from './screenshots/stats-light.png';
 import statsDark from './screenshots/stats-dark.png';
 import shareLight from './screenshots/share-light.png';
 import shareDark from './screenshots/share-dark.png';
+import icon from './icon.svg';
 
 export default {
   name: 'Liechtenoter',
-  icon: '⚔️',
+  icon, // the app icon, copied from hemaNote's liechtenoter/assets/icon/icon.svg
   color: '#9C2B1F',
   tagline: 'A Fechtbuch for the modern HEMAist.',
   description:

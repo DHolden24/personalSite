@@ -17,7 +17,7 @@ Create a folder in `src/projects/` named after the project. The folder name beco
 
 ```
 src/projects/<id>/
-  project.js     Metadata: name, icon, tagline, description, status, links, ...
+  project.js     Metadata: name, icon (an imported image), tagline, description, status, links, ...
   privacy.md     Optional privacy policy, served at /projects/<id>/privacy
 ```
 

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!--
+    Liechtenoter icon: full icon (parchment + emblem), used for iOS, web,
+    desktop and the legacy Android icon. Both pieces are drawn upright around
+    (0,0) and rotated into the X, so lengths/angles are easy to tweak.
+    The foreground/background SVGs alongside make up the Android adaptive icon.
+    Rasterised to the PNGs in this folder; see README.md.
+  -->
+  <defs>
+    <!-- Subtle parchment grain. Delete the <rect filter> below for a flat background. -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="3" seed="7"/>
+      <feColorMatrix values="0 0 0 0 0.36  0 0 0 0 0.27  0 0 0 0 0.15  0 0 0 0.9 -0.3"/>
+    </filter>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="60%" stop-color="#5D4C37" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#5D4C37" stop-opacity="0.22"/>
+    </radialGradient>
+
+    <!-- Sword, upright: tip at top, pommel at bottom. Length 640. -->
+    <g id="sword">
+      <path d="M0,-320 L31,-256 L34,134 L-34,134 L-31,-256 Z"/>
+      <rect x="-118" y="144" width="236" height="40" rx="10"/>
+      <rect x="-18" y="190" width="36" height="72"/>
+      <circle cx="0" cy="297" r="29"/>
+    </g>
+
+    <!-- Pen, upright: cap at top, nib at bottom. Length 640, nib ~30% of it. -->
+    <mask id="penCutouts" maskUnits="userSpaceOnUse" x="-80" y="-340" width="160" height="680">
+      <rect x="-80" y="-340" width="160" height="680" fill="#fff"/>
+      <!-- cap / barrel seam -->
+      <rect x="-46" y="-118" width="92" height="12" fill="#000"/>
+      <!-- breather hole + slit -->
+      <circle cx="0" cy="210" r="15" fill="#000"/>
+      <rect x="-4.5" y="210" width="9" height="130" fill="#000"/>
+    </mask>
+    <g id="pen">
+      <g mask="url(#penCutouts)">
+        <path d="M-36,-284 A36,36 0 0 1 36,-284 L36,90 L-36,90 Z"/>
+        <path d="M-36,100 L36,100 L30,138 L-30,138 Z"/>
+        <path d="M-33,148 L33,148 C33,214 14,270 0,322 C-14,270 -33,214 -33,148 Z"/>
+      </g>
+    </g>
+
+    <!-- Knocks a gap into the pen where the sword crosses over it. -->
+    <mask id="swordGap" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
+      <rect width="1024" height="1024" fill="#fff"/>
+      <use href="#sword" transform="translate(512 512) rotate(32)"
+           fill="#000" stroke="#000" stroke-width="30" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="#E9DDC0"/>
+  <rect width="1024" height="1024" filter="url(#grain)" opacity="0.35"/>
+  <rect width="1024" height="1024" fill="url(#vignette)"/>
+
+  <!-- Emblem -->
+  <!-- Scaled up for the full icon; drop the scale to return to adaptive safe-zone size. -->
+  <g fill="#9C2B1F" transform="translate(512 512) scale(1.45) translate(-512 -512)">
+    <g mask="url(#swordGap)">
+      <use href="#pen" transform="translate(512 512) rotate(-32)"/>
+    </g>
+    <use href="#sword" transform="translate(512 512) rotate(32)"/>
+  </g>
+</svg>

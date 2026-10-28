@@ -10,14 +10,22 @@
 </template>
 
 <script setup>
-import { NCard } from 'naive-ui';
+import { NCard, useThemeVars } from 'naive-ui';
 
 defineProps({ to: { type: [String, Object], required: true } });
+
+const themeVars = useThemeVars();
 </script>
 
 <style scoped>
 .link-card {
   margin-bottom: 1rem;
+  border-radius: v-bind('themeVars.borderRadius');
+}
+
+.link-card:focus-visible {
+  outline: 2px solid v-bind('themeVars.primaryColor');
+  outline-offset: 2px;
 }
 
 .row {
@@ -40,5 +48,15 @@ defineProps({ to: { type: [String, Object], required: true } });
 .link-card:hover .arrow {
   transform: translateX(4px);
   opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition: opacity 0.15s;
+  }
+
+  .link-card:hover .arrow {
+    transform: none;
+  }
 }
 </style>

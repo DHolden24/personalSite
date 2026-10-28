@@ -4,7 +4,7 @@
       <n-breadcrumb-item><router-link to="/">Projects</router-link></n-breadcrumb-item>
       <n-breadcrumb-item>{{ project.name }}</n-breadcrumb-item>
     </n-breadcrumb>
-    <div class="icon">{{ project.icon }}</div>
+    <img v-if="project.icon" class="icon" :src="project.icon" alt="" data-test="project-icon" />
     <n-h1 class="heading">{{ project.name }}</n-h1>
     <n-text depth="3" class="tagline">{{ project.tagline }}</n-text>
     <n-space class="tags">
@@ -13,7 +13,7 @@
     </n-space>
     <n-p>{{ project.description }}</n-p>
     <n-space>
-      <n-button v-for="l in project.links" :key="l.label" tag="a" :href="l.url" secondary>{{ l.label }} ↗</n-button>
+      <n-button v-for="l in project.links" :key="l.label" tag="a" :href="l.url" secondary>{{ l.label }}</n-button>
     </n-space>
     <div class="features">
       <section v-for="(f, i) in project.features" :key="f.title" class="feature" :class="{ flip: i % 2 }">
@@ -33,7 +33,7 @@
       </section>
     </div>
     <template v-if="project.privacyPolicy">
-      <n-divider title-placement="left">Documents</n-divider>
+      <n-divider />
       <link-card :to="{ name: 'privacy', params: { id: project.id } }">
         <n-text strong>Privacy policy</n-text>
       </link-card>
@@ -63,8 +63,11 @@ usePageTitle(() => project.value?.name);
 
 <style scoped>
 .icon {
+  display: block;
   margin-top: 1.5rem;
-  font-size: 4rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 22%;
 }
 
 .heading {
@@ -135,7 +138,7 @@ usePageTitle(() => project.value?.name);
     width: var(--width);
     margin-inline: calc((100% - var(--width)) / 2);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 0 4rem;
   }
 

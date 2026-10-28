@@ -14,6 +14,23 @@ describe('routes', () => {
     expect(document.title).toBe('Darren Holden');
   });
 
+  it('labels the theme switch with icons, not emoji', async () => {
+    ({ wrapper } = await mountAt('/'));
+    const toggle = wrapper.find('[role="switch"]');
+    expect(toggle.text()).not.toMatch(/\p{Extended_Pictographic}/u);
+    expect(toggle.findAll('svg[aria-hidden="true"]').length).toBeGreaterThan(0);
+  });
+
+  it("shows each project's app icon as an image on the home and project pages", async () => {
+    const { icon } = findProject('liechtenoter');
+    ({ wrapper } = await mountAt('/'));
+    expect(wrapper.find('a[href="/projects/liechtenoter"] img[data-test="project-icon"]').attributes('src')).toBe(icon);
+    wrapper.unmount();
+    ({ wrapper } = await mountAt('/projects/liechtenoter'));
+    expect(wrapper.find('img[data-test="project-icon"]').attributes('src')).toBe(icon);
+    expect(wrapper.text()).not.toMatch(/\p{Extended_Pictographic}/u);
+  });
+
   it('shows a project page with a link to its privacy policy', async () => {
     ({ wrapper } = await mountAt('/projects/liechtenoter'));
     expect(wrapper.find('h1').text()).toBe('Liechtenoter');

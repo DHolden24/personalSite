@@ -3,7 +3,7 @@
   <div class="list">
     <link-card v-for="p in projects" :key="p.id" :to="{ name: 'project', params: { id: p.id } }">
       <div class="project">
-        <div class="icon" :style="{ background: p.color + '1f' }">{{ p.icon }}</div>
+        <img v-if="p.icon" class="icon" :src="p.icon" alt="" data-test="project-icon" />
         <div>
           <n-text strong class="name">{{ p.name }}</n-text>
           <div><n-text depth="3">{{ p.tagline }}</n-text></div>
@@ -44,12 +44,9 @@ usePageTitle();
 
 .icon {
   flex-shrink: 0;
-  display: grid;
-  place-items: center;
   width: 3.5rem;
   height: 3.5rem;
-  border-radius: 50%;
-  font-size: 2.25rem;
+  border-radius: 22%;
 }
 
 .name {

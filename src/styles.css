@@ -1,3 +1,12 @@
+:root {
+  --font-prose: Georgia, 'Times New Roman', serif;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
 .page {
   max-width: 44rem;
   margin: 0 auto;
@@ -11,13 +20,14 @@
 }
 
 .prose {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-prose);
   font-size: 1.075rem;
   line-height: 1.8;
 }
 
 .prose h1 {
   line-height: 1.25;
+  text-wrap: balance;
 }
 
 .prose a {
