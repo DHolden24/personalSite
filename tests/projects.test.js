@@ -11,6 +11,12 @@ describe('projects', () => {
     expect(findProject('liechtenoter').privacyPolicy).toMatch(/^# Liechtenoter Privacy Policy/);
   });
 
+  it('has no unfilled [PLACEHOLDER] left in any privacy policy', () => {
+    for (const p of projects.filter((p) => p.privacyPolicy)) {
+      expect(p.privacyPolicy, p.id).not.toMatch(/\[[A-Z][A-Z ]+\]/);
+    }
+  });
+
   it('returns undefined for an unknown project', () => {
     expect(findProject('nope')).toBeUndefined();
   });

@@ -65,4 +65,4 @@ If this policy changes, the updated version will be posted at this address with 
 
 ## Contact
 
-Questions about this policy can be sent to: **[CONTACT EMAIL]**
+Questions about this policy can be sent to [darren@dholden.ca](mailto:darren@dholden.ca).
